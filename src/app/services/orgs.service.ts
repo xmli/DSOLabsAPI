@@ -18,6 +18,7 @@ export class OrgsService {
     private propublicaUrl = 'https://projects.propublica.org/nonprofits/api/v2/organizations/';
     private guidestarUrl = 'https://quickstartdata.guidestar.org/v1/quickstartdetail/';
     private guidestarSearchUrl = 'https://quickstartdata.guidestar.org/v1/quickstartsearch';
+    private foundationCenterUrl = "http://api.foundationcenter.org/research-dev/v1.1/";
 
     getProPublicaAPI(ein:number): Observable<ProPublicaOrg> {
         let headers = new Headers();
@@ -50,4 +51,15 @@ export class OrgsService {
             .retry(3)
             .catch(error => Observable.throw(error.json().error || 'Server error'));
     }
+
+    getFoundationCenterAPI(apiList:string, params:string) {
+        let apiKey = "hftOJ088MeSTLJQqXSpK";
+        let apiUrl = this.foundationCenterUrl + apiList + "?key=" + apiKey + "&" + params;
+        console.log(apiUrl);
+        return this._http.get(apiUrl)
+            .map(res => res.json())
+            .retry(2)
+            .catch(error => Observable.throw(error.json().error || 'Server error'));
+    }
+    
 }

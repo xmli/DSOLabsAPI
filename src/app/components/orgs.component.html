@@ -122,10 +122,10 @@
             </form>
         </div>
     </div>
-</div><br>
+<hr></div><br>
 
-<div class="container" *ngIf="searched">
-    <hr><h2>Search Results</h2>
+<div class="container"><h2>GuideStar Search Results</h2></div>
+<div class="container" *ngIf="gsSearched">   
     <h5>Showing {{guideStarSearchResults.showing}}</h5>
     <table class="table table-hover">
         <thead>
@@ -137,7 +137,7 @@
             <th>Zip</th>
         </thead>
         <tr *ngFor="let result of guideStarSearchResults.hits">
-            <td>{{result.organization_name | uppercase}}</td>
+            <td>{{result.organization_name}}</td>
             <td>{{result.organization_id}}</td>
             <td>{{result.ein}}</td>
             <td>{{result.city}}</td>
@@ -147,5 +147,82 @@
     </table>
     <button type="button" class="btn btn-primary" (click)="prevPage()">Prev</button>
     <button type="button" class="btn btn-primary" (click)="nextPage()">Next</button>
-    <br><hr>
+    <br>
 </div>
+
+<div class="container"><hr>
+    <h2>Foundation Center API</h2>
+    <div class="row">
+        <div class="col-xs-4">
+            <label>Choose API List</label><br>
+            <md-radio-group class="radio-group" [(ngModel)]="FCQueryList">
+                <md-radio-button class="radio-button" *ngFor="let list of foundationCenterAPIs" [value]="list.api">
+                    {{list.listName}}
+                </md-radio-button>
+            </md-radio-group><br><br>
+            <!--<p>Your chosen list is: {{FCQueryList}}</p><br>-->
+            
+            <md-select placeholder="State" [(ngModel)]="selectedState" name="state.abbreviation">
+                <md-option *ngFor="let state of states" [value]="state.abbreviation">
+                {{state.name}}
+                </md-option>
+            </md-select><br><br>
+            <button type="button" class="btn btn-primary" (click)="getFoundationCenterResults()">Submit</button>
+            <!--<p> Selected state: {{selectedState}} </p>-->
+        </div>
+        <div class="col-xs-4">
+            <md-input-container>
+                <input mdInput placeholder="Year" [(ngModel)]="selectedYear">
+            </md-input-container><br>
+            <!--<p> Selected Year: {{selectedYear}} </p>-->
+            
+            <label>Rank By</label><br>
+            <md-radio-group class="radio-group" [(ngModel)]="selectedRankby">
+                <md-radio-button class="radio-button" *ngFor="let option of rankOptions" [value]="option">
+                    {{option}}
+                </md-radio-button>
+            </md-radio-group>
+            <!--<p>Chosen rank option: {{selectedRankby}} </p>-->
+        </div>
+        <div class="col-xs-4">
+            <label>Organization Type (optional)</label><br>
+            <md-radio-group class="radio-group" [(ngModel)]="selectedOrgType">
+                <md-radio-button class="radio-button" *ngFor="let type of orgTypes" [value]="type">
+                    {{type}}
+                </md-radio-button>
+            </md-radio-group>
+            <!--<p>Chosen rank option: {{selectedOrgType}} </p>-->
+            <br>
+        </div>
+    </div><hr>
+</div>
+
+<div class="container"><h2>Foundation Center Search Results</h2><hr></div>
+<div class="container" *ngIf="fcSearched">   
+    <table class="table table-hover">
+        <thead>
+            <th>Foundation Name</th>
+            <th>Assets</th>
+            <th>Gifts Received</th>
+            <th>Giving</th>
+            <th>State</th>
+            <th>Type</th>
+        </thead>
+        <tr *ngFor="let result of foundationCenterResults | paginate: { itemsPerPage: 10, currentPage: p ">
+            <td>{{result.foundation.name}}</td>
+            <td>{{result.assets.amount | currency:'USD':true:'1.2-2'}}</td>
+            <td>{{result.gifts_received.amount | currency:'USD':true:'1.2-2'}}</td>
+            <td>{{result.giving.amount | currency:'USD':true:'1.2-2'}}</td>
+            <td>{{result.state.name}}</td>
+            <td>{{result.type.name}}</td>
+        </tr>
+    </table>
+    <pagination-controls (pageChange)="p = $event" #api></pagination-controls>
+    <br>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Copyright @ Sean Li </p>
+    </div>
+</footer>
