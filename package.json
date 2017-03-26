@@ -24,19 +24,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-<<<<<<< HEAD
-    "@angular/common": "~2.4.0",
-    "@angular/compiler": "~2.4.0",
-    "@angular/core": "~2.4.0",
-    "@angular/forms": "~2.4.0",
-    "@angular/http": "~2.4.0",
-    "@angular/material": "^2.0.0-beta.2",
-    "@angular/platform-browser": "~2.4.0",
-    "@angular/platform-browser-dynamic": "~2.4.0",
-    "@angular/router": "~3.4.0",
-    "angular-hammer": "^2.2.0",
-    "angular-in-memory-web-api": "~0.2.4",
-=======
     "@angular/common": "~4.0.0",
     "@angular/compiler": "~4.0.0",
     "@angular/core": "~4.0.0",
@@ -48,27 +35,16 @@
 
     "angular-in-memory-web-api": "~0.3.0",
     "systemjs": "0.19.40",
->>>>>>> 456b849692ade45c4f58fc80c65ee23c99dc9190
     "core-js": "^2.4.1",
     "ng2-bootstrap": "^1.4.2",
     "ng2-pagination": "^2.0.1",
     "rxjs": "5.0.1",
-<<<<<<< HEAD
-    "systemjs": "0.19.40",
-    "zone.js": "^0.7.4"
-=======
     "zone.js": "^0.8.4"
->>>>>>> 456b849692ade45c4f58fc80c65ee23c99dc9190
   },
   "devDependencies": {
     "concurrently": "^3.2.0",
     "lite-server": "^2.2.2",
-<<<<<<< HEAD
-    "typescript": "~2.0.10",
-=======
     "typescript": "~2.1.0",
-
->>>>>>> 456b849692ade45c4f58fc80c65ee23c99dc9190
     "canonical-path": "0.0.2",
     "tslint": "^3.15.1",
     "lodash": "^4.16.4",
