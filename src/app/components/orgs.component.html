@@ -208,7 +208,7 @@
             <th>State</th>
             <th>Type</th>
         </thead>
-        <tr *ngFor="let result of foundationCenterResults | paginate: { itemsPerPage: 10, currentPage: p ">
+        <tr *ngFor="let result of foundationCenterResults">
             <td>{{result.foundation.name}}</td>
             <td>{{result.assets.amount | currency:'USD':true:'1.2-2'}}</td>
             <td>{{result.gifts_received.amount | currency:'USD':true:'1.2-2'}}</td>
@@ -217,7 +217,6 @@
             <td>{{result.type.name}}</td>
         </tr>
     </table>
-    <pagination-controls (pageChange)="p = $event" #api></pagination-controls>
     <br>
 </div>
 
